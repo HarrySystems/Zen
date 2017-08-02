@@ -6,7 +6,7 @@ function zen_profile()
 		;;
 
 		"config")
-			zen_dev "$@"
+			zen_zen "$@"
 			zen_bash list 
 		;;
 
@@ -53,6 +53,10 @@ function zen_profile()
 		"push")
 			zen_session "$@"
 			zen_profile list
+		;;
+
+		"core")
+			zen_zen "$@"
 		;;
 
 		*)

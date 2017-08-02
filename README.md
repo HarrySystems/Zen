@@ -4,7 +4,9 @@ An abstraction over Bash to make it more semantic and declutter your bash_profil
 ## Installation
 ```
 git clone 'http://github.com/HarrySystems/Zen' ~/zen/
+touch ~/.bash_profile
 echo "source ~/zen/zen.sh" >> ~/.bash_profile
+source ~/.bash_profile
 ```
 
 ## Usage

@@ -7,18 +7,17 @@
 	}
 
 	function zen_source() {
-		#{
+		{
 			source ~/zen/zen.sh
 
 			for f in ~/zen/plugins/*; do
 				source $f
-				echo $f
 			done
 
 			for f in ~/zen/config/*; do
 				source $f
 			done
-		#} 2>/dev/null
+		} 2>/dev/null
 	}
 
 # core
@@ -68,11 +67,11 @@
 			*)
 				action=$1
 				context=$2
-				arguments=${@:2}
+				arguments=${@:3}
 
-				echo "action: $action"
-				echo "context: $context"
-				echo "arguments: $arguments"
+				#echo "action: $action"
+				#echo "context: $context"
+				#echo "arguments: $arguments"
 
 				{
 					# action from profile

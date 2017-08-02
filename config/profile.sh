@@ -1,78 +1,72 @@
 function zen_profile()
 {
 	case $1 in
-		"go")
-			zen_profile open ${@:2}
-		;;
+		# GIT
+			"commit")
+				zen_git "$@" 
+			;;
 
-		"config")
-			zen_zen "$@"
-			zen_bash list 
-		;;
+		# VIM
+			"edit")
+				zen_vim "$@" 
+			;;
 
-		"edit")
-			zen_vim "$@" 
-		;;
+		# BASH
+			"create")
+				zen_bash "$@"
+				zen_profile list
+			;;
 
-		"create")
-			zen_bash "$@"
-			zen_profile list
-		;;
+			"remove")
+				zen_bash "$@"
+			;;
 
-		"remove")
-			zen_bash "$@"
-		;;
+			"list")
+				clear
+				zen_bash list
+			;;
 
-		"commit")
-			zen_git "$@" 
-		;;
+			"open")
+				zen_bash "$@"
+				zen_profile list
+			;;
 
-		"clear")
-			zen_bash "$@" 
-		;;
+		# SESSION
+			"pop")
+				zen_session "$@"
+				zen_profile list
+			;;
 
-		"edit")
-			zen_vim "$@" 
-		;;
+			"push")
+				zen_session "$@"
+				zen_profile list
+			;;
 
-		"list")
-			zen_profile clear
-			zen_bash list
-		;;
+		# DEV
+			"core")
+				zen_zen "$@"
+			;;
 
-		"open")
-			zen_bash "$@"
-			zen_profile list
-		;;
+			"plugin")
+				zen_zen "$@"
+			;;
+			
+			"config")
+				zen_zen "$@"
+				zen_bash list 
+			;;
 
-		"pop")
-			zen_session "$@"
-			zen_profile list
-		;;
-
-		"push")
-			zen_session "$@"
-			zen_profile list
-		;;
-
-		"core")
-			zen_zen "$@"
-		;;
-
-		"plugin")
-			zen_zen "$@"
-		;;
-
-		*)
-			if [[ -d $@ || -f $@ || $@ =~ [0-9] ]]; then 
-				zen_profile open "$@"
-			else
-				if [ -d $@ ]; then
-					zen_profile open $@
+		# navigation and general commands
+			*)
+				if [[ -d $@ || -f $@ || $@ =~ [0-9] ]]; then 
+					zen_profile open "$@"
 				else
-					return 2
+					if [ -d $@ ]; then
+						zen_profile open $@
+					else
+						return 2
+					fi
 				fi
-			fi
-		;;
+			;;
 	esac
 }

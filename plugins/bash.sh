@@ -39,18 +39,14 @@ function zen_bash()
 				;;
 
 				"name")
-					ls
+					ls -a
 				;;
 
 				"name_desc")
 				;;
 				
-				"")
-					ls
-				;;
-
 				*)
-					ls
+					ls -a
 				;;
 			esac
 		;;

@@ -59,6 +59,10 @@ function zen_profile()
 			zen_zen "$@"
 		;;
 
+		"plugin")
+			zen_zen "$@"
+		;;
+
 		*)
 			if [[ -d $@ || -f $@ || $@ =~ [0-9] ]]; then 
 				zen_profile open "$@"

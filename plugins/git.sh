@@ -5,19 +5,20 @@ function zen_git()
 		;;
 
 		"commit")
-			git commit -m "$2"
+			if [[ -z "$3" ]]; then
+				git commit -m "$2"
+			else
+				git $@
+			fi
 		;;
 
 		"push")
 			git push --follow-tags --force
 		;;
 
-		"lazy")
-			# commit or amend and push
-		;;
-
 		*)
-			return 2
+			git $@
+			#return 2
 		;;
 	esac
 }

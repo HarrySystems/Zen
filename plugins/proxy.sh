@@ -6,7 +6,9 @@ function zen_proxy()
 		;;
 
 		"load")
-			source ~/.proxy
+			{
+				source ~/.proxy
+			} 2>/dev/null
 		;;
 
 		*)

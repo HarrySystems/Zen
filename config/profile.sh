@@ -6,6 +6,14 @@ function zen_profile()
 				zen_git "$@" 
 			;;
 
+			"status")
+				zen_git "$@"
+			;;
+
+			"log")
+				zen_git "$@"
+			;;
+
 		# VIM
 			"edit")
 				zen_vim "$@" 

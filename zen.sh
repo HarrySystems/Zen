@@ -84,7 +84,7 @@
 					eval "zen_$action $context $arguments"
 				} 2>/dev/null || {
 					# shell commands
-					eval "$action $context"
+					eval "$action $context $arguments"
 				} 
 			;;
 

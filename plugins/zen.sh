@@ -4,7 +4,11 @@ function zen_zen()
 	case $1 in
 		"config")
 			if [[ ! -z "$2" ]]; then
-				zen_zen edit ~/zen/config/$2.sh
+				if [[ -f "~/zen/config/$2.sh" ]]; then
+					zen_zen edit ~/zen/config/$2.sh
+				else
+					return 2
+				fi
 			else
 				ls ~/zen/config/
 			fi

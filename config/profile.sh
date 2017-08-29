@@ -1,19 +1,6 @@
 function zen_profile()
 {
 	case $1 in
-		# GIT
-			"commit")
-				zen_git "$@" 
-			;;
-
-			"status")
-				zen_git "$@"
-			;;
-
-			"log")
-				zen_git "$@"
-			;;
-
 		# VIM
 			"edit")
 				zen_vim "$@" 

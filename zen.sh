@@ -43,24 +43,24 @@
 					zen_restart=false
 
 				# interactive shell
-					while ($zen_alive && ! $zen_restart)
-					do
-						read -e -p "Zen> " action context arguments
-						history -s "$action $context $arguments"
+					#while ($zen_alive && ! $zen_restart)
+					#do
+					#	read -e -p "Zen> " action context arguments
+					#	history -s "$action $context $arguments"
 
-						if [[ $action = zen && -z $context ]]; then
-							echo "Can it be more zen than this?"
-							continue
-						else
-							zen $action $context $arguments
-						fi
-					done
+					#	if [[ $action = zen && -z $context ]]; then
+					#		echo "Can it be more zen than this?"
+					#		continue
+					#	else
+					#		zen $action $context $arguments
+					#	fi
+					#done
 
-					if [[ $zen_restart ]]; then
-						zen_restart=false
-						zen
-						return
-					fi
+					#if [[ $zen_restart ]]; then
+					#	zen_restart=false
+					#	zen
+					#	return
+					#fi
 			;;
 
 			# interpret commands
@@ -91,3 +91,19 @@
 		esac
 	}
 
+	function zen_trap() {
+		function preexec () {
+			zen $@
+			return 1
+		}
+		function PreCommand() {
+			[ -n "$COMP_LINE" ] && return  # do nothing if completing
+			[ "$BASH_COMMAND" = "$PROMPT_COMMAND" ] && return # don't cause a preexec for $PROMPT_COMMAND
+			local this_command=`HISTTIMEFORMAT= history 1 | sed -e "s/^[ ]*[0-9]*[ ]*//"`;
+			preexec "$this_command"
+		}
+		trap "PreCommand" DEBUG
+		shopt -s extdebug
+	}
+	zen_trap
+	
